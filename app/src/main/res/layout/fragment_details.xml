@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="DetailsBinding"
+            type="com.uma.cipltask.ui.details.DetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:scrollbars="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dp10"
+                android:orientation="vertical"
+                android:scrollbars="vertical">
+
+                <ImageView
+                    android:id="@+id/imageProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp270"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    android:src="@mipmap/ic_launcher"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txtPostData"
+                    style="@style/detailsText"
+                    android:textColor="@android:color/holo_red_light"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageProfile"
+                    tools:text="@string/leaveComment" />
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    style="@style/detailsText"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtPostData"
+                    tools:text="Name" />
+
+                <TextView
+                    android:id="@+id/txt_full_name"
+                    style="@style/detailsText"
+                    android:layout_marginBottom="@dimen/dp15"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_title"
+                    tools:text="full name" />
+
+                <TextView
+                    android:id="@+id/txt_description"
+                    style="@style/detailsText"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_full_name"
+                    tools:text="description" />
+
+                <TextView
+                    android:id="@+id/txt_type"
+                    style="@style/detailsText"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_description"
+                    tools:text="type" />
+
+                <TextView
+                    android:id="@+id/txt_repo_url"
+                    style="@style/detailsText"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_type"
+                    tools:text="repo" />
+
+                <TextView
+                    android:id="@+id/txt_event_url"
+                    style="@style/detailsText"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txt_repo_url"
+                    tools:text="Event" />
+
+                <androidx.constraintlayout.widget.Group
+                    android:id="@+id/groupDetailsScreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:constraint_referenced_ids="imageProfile,txt_description,txt_event_url,txt_full_name,txt_repo_url,txt_title,txt_type,txtPostData" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/txtNoData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/gotham_medium"
+            android:text="No data Available"
+            android:textSize="@dimen/textHeader"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

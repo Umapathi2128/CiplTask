@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cipl Task</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="post">Post</string>
+    <string name="leaveComment">Leave a comment here</string>
+</resources>
