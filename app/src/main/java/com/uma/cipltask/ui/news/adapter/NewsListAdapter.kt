@@ -13,8 +13,9 @@ import com.uma.cipltask.data.model.Article
 import com.uma.cipltask.databinding.ItemInflateBinding
 import com.uma.cipltask.utils.Constant
 import com.uma.cipltask.utils.Utils
+import javax.inject.Inject
 
-class NewsListAdapter() :
+class NewsListAdapter @Inject constructor() :
     RecyclerView.Adapter<NewsListAdapter.NewsListViewHolder>() {
 
     private lateinit var context: Context

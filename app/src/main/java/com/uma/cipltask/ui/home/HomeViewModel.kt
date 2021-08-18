@@ -14,6 +14,8 @@ import com.uma.cipltask.data.repository.DataManager
 import com.uma.cipltask.ui.home.adapter.GitRepoDataSource
 import com.uma.cipltask.utils.NetworkHelper
 import com.uma.cipltask.utils.Resource
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -33,5 +35,24 @@ class HomeViewModel @Inject constructor(var dataManager: DataManager, var networ
              _repoList.postValue(Resource.error(data = null, msg = "No internet"))
              null
          }
+    }
+
+    suspend fun a(){
+
+       viewModelScope.launch {
+           awaitAll(
+               async {  },async {  },async {  }
+           )
+       }
+
+        var re = viewModelScope.async {
+
+        }
+        var a = viewModelScope.async {
+
+        }
+        re.cancel()
+        re.await()
+        a.await()
     }
 }

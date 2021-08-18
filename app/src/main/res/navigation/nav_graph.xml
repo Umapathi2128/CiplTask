@@ -21,18 +21,15 @@
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
         <action
-            android:id="@+id/action_detailsFragment_to_newsFragment"
-            app:destination="@id/newsFragment"
-            app:popUpTo="@id/newsFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_detailsFragment_to_newsFragment2"
+            app:destination="@id/newsFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
         android:name="com.uma.cipltask.ui.news.NewsFragment"
-        android:label="fragment_news"
-        tools:layout="@layout/fragment_news" >
+        android:label="NewsFragment" >
         <action
-            android:id="@+id/action_newsFragment_to_homeFragment"
+            android:id="@+id/action_newsFragment2_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

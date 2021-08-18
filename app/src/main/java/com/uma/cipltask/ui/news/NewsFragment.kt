@@ -29,7 +29,7 @@ class NewsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var viewModel: NewsListViewModel
     @Inject
     lateinit var viewFactory: NewsListViewFactory
-    private lateinit var newsListAdapter: NewsListAdapter
+    @Inject lateinit var newsListAdapter: NewsListAdapter
     lateinit var countryList: Array<String>
     lateinit var categoryList: Array<String>
     var country = "in"
@@ -66,7 +66,6 @@ class NewsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun setupRecyclerView() {
-        newsListAdapter = NewsListAdapter()
         binding.recycleView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = newsListAdapter
