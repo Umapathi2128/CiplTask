@@ -10,11 +10,11 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("repos")
-    suspend fun getRepoList(
-        @Query("page") page: String,
-        @Query("per_page") per_page: String
-    ): Response<GitRepoResponse>
+//    @GET("repos")
+//    suspend fun getRepoList(
+//        @Query("page") page: String,
+//        @Query("per_page") per_page: String
+//    ): Response<GitRepoResponse>
 
 
     @GET("top-headlines?apiKey=${Constant.NEWS_API_KEY}")

@@ -50,6 +50,7 @@ class NewsListAdapter() :
     inner class NewsListViewHolder(var v: ItemInflateBinding) : RecyclerView.ViewHolder(v.root) {
         fun onBind(position: Int) {
             v.inflateBinding = newsList[position]
+
             Glide.with(v.imgProfile.context).load(newsList[position].urlToImage)
                 .apply(RequestOptions.circleCropTransform())
                 .placeholder(Utils.getImagePlaceHolderLoading(v.imgProfile.context))

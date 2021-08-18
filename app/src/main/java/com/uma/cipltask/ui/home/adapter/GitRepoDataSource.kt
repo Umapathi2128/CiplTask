@@ -32,5 +32,4 @@ class GitRepoDataSource(private val dataManager: DataManager) : PagingSource<Int
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
     }
-
 }

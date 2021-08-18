@@ -1,5 +1,6 @@
 package com.uma.cipltask.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
@@ -27,19 +28,28 @@ import com.uma.cipltask.ui.SharedViewModel
 import com.uma.cipltask.ui.home.adapter.HomeAdapter
 import com.uma.cipltask.utils.NetworkHelper
 import com.uma.cipltask.utils.Status
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 class HomeFragment : Fragment(),HomeAdapter.ItemClickListener {
 
     lateinit var binding : FragmentHomeBinding
     lateinit var viewModel : HomeViewModel
+    @Inject lateinit var viewFactory: HomeViewFactory
     lateinit var homeAdapter : HomeAdapter
     lateinit var navController : NavController
     lateinit var model: SharedViewModel
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        AndroidSupportInjection.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,12 +58,7 @@ class HomeFragment : Fragment(),HomeAdapter.ItemClickListener {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         viewModel =
             ViewModelProviders.of(this,
-                context?.let { DataManager(it) }?.let {
-                    HomeViewFactory(
-                        it,
-                        NetworkHelper(requireContext())
-                    )
-                }).get(HomeViewModel::class.java)
+                viewFactory).get(HomeViewModel::class.java)
         return binding.root
     }
 

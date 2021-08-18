@@ -10,9 +10,10 @@ import com.uma.cipltask.utils.NetworkHelper
 import com.uma.cipltask.utils.Resource
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class NewsListViewModel(private val dataManager: DataManager, var networkHelper: NetworkHelper) : ViewModel() {
+class NewsListViewModel @Inject constructor(private val dataManager: DataManager, var networkHelper: NetworkHelper) : ViewModel() {
 
     private var _newsList = MutableLiveData<Resource<NewsListResponse>>()
     val newsList: LiveData<Resource<NewsListResponse>>

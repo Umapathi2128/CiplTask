@@ -1,5 +1,6 @@
 package com.uma.cipltask.ui.news
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,36 +21,43 @@ import com.uma.cipltask.databinding.FragmentNewsBinding
 import com.uma.cipltask.ui.news.adapter.NewsListAdapter
 import com.uma.cipltask.utils.NetworkHelper
 import com.uma.cipltask.utils.Status
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
-class NewsFragment : Fragment(),AdapterView.OnItemSelectedListener {
+class NewsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private lateinit var viewModel: NewsListViewModel
+    @Inject
+    lateinit var viewFactory: NewsListViewFactory
     private lateinit var newsListAdapter: NewsListAdapter
     lateinit var countryList: Array<String>
     lateinit var categoryList: Array<String>
     var country = "in"
     var category = "technology"
-    lateinit var binding : FragmentNewsBinding
+    lateinit var binding: FragmentNewsBinding
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_news, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
         viewModel =
-            ViewModelProviders.of(this,
-                context?.let { DataManager(requireActivity()) }?.let {
-                    NewsListViewFactory(
-                        it,
-                        NetworkHelper(requireContext())
-                    )
-                }).get(NewsListViewModel::class.java)
+            ViewModelProviders.of(
+                this,
+                viewFactory
+            ).get(NewsListViewModel::class.java)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.callNewsListApi(country,category)
+        viewModel.callNewsListApi(country, category)
         setupRecyclerView()
         setUpSpinner()
         setupObservables()
@@ -66,7 +74,7 @@ class NewsFragment : Fragment(),AdapterView.OnItemSelectedListener {
     }
 
     private fun setupObservables() {
-        viewModel.newsList.observe(this, Observer {
+        viewModel.newsList.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.LOADING -> {
                     binding.apply {

@@ -16,8 +16,9 @@ import com.uma.cipltask.utils.NetworkHelper
 import com.uma.cipltask.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(var dataManager: DataManager, var networkHelper: NetworkHelper) : ViewModel() {
+class HomeViewModel @Inject constructor(var dataManager: DataManager, var networkHelper: NetworkHelper) : ViewModel() {
 
     private val _repoList = MutableLiveData<Resource<GitRepoResponse>>()
     val repoList: LiveData<Resource<GitRepoResponse>>

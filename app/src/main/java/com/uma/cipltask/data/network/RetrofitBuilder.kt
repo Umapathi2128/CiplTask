@@ -6,8 +6,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-open class RetrofitBuilder {
+class RetrofitBuilder @Inject constructor()  {
 
     private val okHttpClient = OkHttpClient().newBuilder()
         .connectTimeout(60, TimeUnit.SECONDS)

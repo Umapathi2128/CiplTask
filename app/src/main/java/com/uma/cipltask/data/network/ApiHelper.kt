@@ -1,16 +1,18 @@
 package com.uma.cipltask.data.network
 
-class ApiHelper : RetrofitBuilder() {
+import javax.inject.Inject
+
+class ApiHelper @Inject constructor(var apiService: ApiService,var gitApi : GitApiService) {
 
 
-    private fun getGitApi() =
-        getGitApiRetrofit().create(ApiService::class.java)
-
-    private fun getNewsApi() = getNewsListApiRetrofit().create(ApiService::class.java)
+//    private fun getGitApi() =
+//        getGitApiRetrofit().create(ApiService::class.java)
+//
+//    private fun getNewsApi() = getNewsListApiRetrofit().create(ApiService::class.java)
 
     suspend fun getNewsList(country: String, category: String) =
-        getNewsApi().getNewsList(country, category)
+        apiService.getNewsList(country, category)
 
     suspend fun getRepoApi(page: String, per_page: String) =
-        getGitApi().getRepoList(page, per_page)
+        gitApi.getRepoList(page, per_page)
 }
